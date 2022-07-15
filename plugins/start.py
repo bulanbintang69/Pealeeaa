@@ -93,7 +93,7 @@ async def start_command(client: Client, message: Message):
                     InlineKeyboardButton("🍑 My Channel", url = client.invitelink)
                 ],                  
                 [
-                    InlineKeyboardButton("😊 About Me", callback_data = "about"),,
+                    InlineKeyboardButton("😊 About Me", callback_data = "about"),
                     InlineKeyboardButton("🔒 Close", callback_data = "close")
                 ]
             ]
