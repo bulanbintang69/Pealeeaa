@@ -87,7 +87,7 @@ async def start_command(client: Client, message: Message):
                 pass
         return
     else:
-       temp_msg = await message.reply_sticker(sticker="CAACAgUAAxkBAAEIOCti0wczUvZ-s7T0ryPcej-1f0cNBQAC5QYAAmhFmFZSkAc3l4QhEikE", quote=True)
+       await message.reply_sticker(sticker="CAACAgUAAxkBAAEIOCti0wczUvZ-s7T0ryPcej-1f0cNBQAC5QYAAmhFmFZSkAc3l4QhEikE", quote=True)
         reply_markup = InlineKeyboardMarkup(
             [
                 [
@@ -112,7 +112,6 @@ async def start_command(client: Client, message: Message):
             quote = True
         )
         return
-    await temp_msg.delete(15)
 
 @Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
