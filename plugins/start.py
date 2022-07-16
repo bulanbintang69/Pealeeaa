@@ -6,7 +6,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, 
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 
 from bot import Bot
-from config import ADMINS, FORCE_MSG, START_MSG, OWNER_ID, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT
+from config import ADMINS, FORCE_MSG, START_MSG, OWNER_ID, LINK_CH, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT
 from helper_func import subscribed, encode, decode, get_messages
 from database.sql import add_user, query_msg, full_userbase
 
@@ -91,7 +91,10 @@ async def start_command(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton("🍑 My Channel", url = client.invitelink)
-                ],                  
+                ],
+                [
+                    InlineKeyboardButton("🍑Join Channel", url = f"https://t.me/{LINK_CH}")
+                ],
                 [
                     InlineKeyboardButton("😊 About Me", callback_data = "about"),
                     InlineKeyboardButton("🔒 Close", callback_data = "close")
@@ -116,9 +119,10 @@ async def start_command(client: Client, message: Message):
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
-            InlineKeyboardButton(
-                "Join Channel",
-                url = client.invitelink)
+            InlineKeyboardButton("Join Channel", url = client.invitelink)
+        ],
+        [
+                InlineKeyboardButton("Join Channel", url = f"https://t.me/{LINK_CH}")
         ]
     ]
     try:
