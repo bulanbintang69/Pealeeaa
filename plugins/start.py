@@ -57,13 +57,13 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except:
                 return
-        temp_msg = await message.reply_sticker(sticker="CAACAgUAAxkBAAEHAfRis22N1Cc-q6Qhy8NPNGONrrueIAAC5wUAAtHfoFVgJIFhKigEkykE", quote=True)
+        temp_msg = await message.reply("Please wait...")
         try:
             messages = await get_messages(client, ids)
         except:
             await message.reply_text("Something went wrong..!")
             return
-        await temp_msg.delete(15)
+        await temp_msg.delete()
 
         for msg in messages:
 
@@ -87,19 +87,18 @@ async def start_command(client: Client, message: Message):
                 pass
         return
     else:
-       reply_markup = InlineKeyboardMarkup(
+        reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🍑 ᴍʏ ᴄʜᴀɴɴᴇʟ", url = client.invitelink),
-                    InlineKeyboardButton("🍑 ᴍʏ ɢʀᴏᴜᴘ", url = f"https://t.me/{LINK_CH}")
+                    InlineKeyboardButton("🍑 My Channel", url = client.invitelink),
+                    InlineKeyboardButton("🍑 My Channel", url = f"https://t.me/{LINK_CH}")
                 ],
                 [
-                    InlineKeyboardButton("✖️ ᴄʟᴏꜱᴇ", callback_data = "close")
+                    InlineKeyboardButton("✖️ Close", callback_data = "close")
                 ]
             ]
         )
-     await message.reply_sticker(sticker="CAACAgUAAxkBAAEIOCti0wczUvZ-s7T0ryPcej-1f0cNBQAC5QYAAmhFmFZSkAc3l4QhEikE")
-     await message.reply_text(
+        await message.reply_text(
             text = START_MSG.format(
                 first = message.from_user.first_name,
                 last = message.from_user.last_name,
@@ -117,20 +116,17 @@ async def start_command(client: Client, message: Message):
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
-            InlineKeyboardButton("🍑 ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ", url = client.invitelink)
+            InlineKeyboardButton("🍑 JOIN CHANNEL", url = client.invitelink)
         ], 
         [
-            InlineKeyboardButton("🍑 ᴊᴏɪɴ ɢʀᴏᴜᴘ", url = f"https://t.me/{LINK_CH}")
-        ],
-        [
-            InlineKeyboardButton("ᴄᴀʀᴀ ᴘᴀᴋᴀɪ ʙᴏᴛ", url = f"https://t.me/Anime_Bahasa_Indonesia/185")
+            InlineKeyboardButton("🍑 JOIN CHANNEL", url = f"https://t.me/{LINK_CH}")
         ]
     ]
     try:
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text = '🗝 ɢᴇᴛ ꜰɪʟᴇ',
+                    text = '🗝GET FILE',
                     url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
