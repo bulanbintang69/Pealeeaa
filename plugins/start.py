@@ -79,8 +79,6 @@ async def start_command(client: Client, message: Message):
 
             try:
                 await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = 'html', reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
-                reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=f'https://telegram.me/share/url')]])
-                await channel_message.reply_text(f"<b>Here is your link</b>\n\n", quote=True, reply_markup=reply_markup)
                 await asyncio.sleep(0.5)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -92,14 +90,11 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🍑 My Channel", url = client.invitelink)
+                    InlineKeyboardButton("🍑 My Channel", url = client.invitelink),
+                    InlineKeyboardButton("🍑 My Channel", url = f"https://t.me/{LINK_CH}")
                 ],
                 [
-                    InlineKeyboardButton("🍑Join Channel", url = f"https://t.me/{LINK_CH}")
-                ],
-                [
-                    InlineKeyboardButton("😊 About Me", callback_data = "about"),
-                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                    InlineKeyboardButton("✖️ Close", callback_data = "close")
                 ]
             ]
         )
@@ -121,17 +116,21 @@ async def start_command(client: Client, message: Message):
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
-            InlineKeyboardButton("Join Channel", url = client.invitelink)
+            InlineKeyboardButton("🍑 JOIN CHANNEL", url = client.invitelink)
         ],
         [
-                InlineKeyboardButton("Join Channel", url = f"https://t.me/{LINK_CH}")
+                InlineKeyboardButton("🍑 JOIN CHANNEL", url = f"https://t.me/{LINK_CH}")
         ]
     ]
     try:
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text = 'Try Again',
+                    text = '🗝GET FILE',
+                    url = f"https://t.me/{client.username}?start={message.command[1]}"
+                ),
+                InlineKeyboardButton(
+                    text = '🗝AMBIL FILE',
                     url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
