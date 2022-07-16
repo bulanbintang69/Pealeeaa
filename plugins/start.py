@@ -116,7 +116,9 @@ async def start_command(client: Client, message: Message):
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
-            InlineKeyboardButton("🍑 JOIN CHANNEL", url = client.invitelink), 
+            InlineKeyboardButton("🍑 JOIN CHANNEL", url = client.invitelink)
+        ], 
+        [
             InlineKeyboardButton("🍑 GABUNG CHANNEL", url = f"https://t.me/{LINK_CH}")
         ]
     ]
@@ -125,10 +127,6 @@ async def not_joined(client: Client, message: Message):
             [
                 InlineKeyboardButton(
                     text = '🗝GET FILE',
-                    url = f"https://t.me/{client.username}?start={message.command[1]}"
-                ),
-                InlineKeyboardButton(
-                    text = '🗝AMBIL FILE',
                     url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
